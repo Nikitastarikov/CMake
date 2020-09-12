@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++14 -Wall   CMakeFiles/simple.dir/src/lib.cpp.o CMakeFiles/simple.dir/src/main.cpp.o  -o simple 
