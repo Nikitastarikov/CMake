@@ -1,4 +1,10 @@
-#include "../include/lib.hpp"
+#include "SimpleConfig.h"
+#ifdef USE_MYLIB
+#include "lib.hpp"
+#endif
+#include <iostream>
+#include <utility>
+#include <cstdlib>
 
 using namespace std;
 

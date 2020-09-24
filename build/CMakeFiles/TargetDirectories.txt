@@ -1,3 +1,0 @@
-/home/nikita/Study/optimization compilers/Cmake/simple/build/CMakeFiles/rebuild_cache.dir
-/home/nikita/Study/optimization compilers/Cmake/simple/build/CMakeFiles/edit_cache.dir
-/home/nikita/Study/optimization compilers/Cmake/simple/build/CMakeFiles/simple.dir

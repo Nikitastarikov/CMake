@@ -1,4 +1,6 @@
-#include "../include/lib.hpp"
+#include <cmath>
+#include <iostream>
+#include "lib.hpp"
 
 double sum(double a, double b)
 {
