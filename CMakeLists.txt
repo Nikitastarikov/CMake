@@ -2,17 +2,29 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 project(Simple VERSION 1.0)
 
+add_library(tutorial_compiler_flags INTERFACE)
+target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
+
+set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU>")
+set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
+target_compile_options(tutorial_compiler_flags INTERFACE
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+)
+
 option(USE_MYLIB "Use my lib" ON)
+
 configure_file(SimpleConfig.h.in SimpleConfig.h)
 
 if (USE_MYLIB)
-	add_subdirectory(include/libsimple)
-	add_subdirectory(include/libcryptographic)
+	add_subdirectory(src/libsimple)
+	add_subdirectory(src/libcryptographic)
+	add_subdirectory(external)
 	list(APPEND EXTRA_LIBS libsimple)
 	list(APPEND EXTRA_LIBS libcryptographic)
 endif()
 
-add_executable(Simple main.cpp)
+add_executable(Simple src/main.cpp)
 
 target_link_libraries(Simple PUBLIC ${EXTRA_LIBS})
 
@@ -25,6 +37,30 @@ install(FILES "${PROJECT_BINARY_DIR}/SimpleConfig.h"
 	DESTINATION include
 )
 
+###########################################GIT########################################
+
+find_package(Git QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+# Update submodules as needed
+    option(GIT_SUBMODULE "Check submodules during build" ON)
+    if(GIT_SUBMODULE)
+        message(STATUS "Submodule update")
+        execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                        RESULT_VARIABLE GIT_SUBMOD_RESULT)
+        if(NOT GIT_SUBMOD_RESULT EQUAL "0")
+            message(FATAL_ERROR "git submodule update --init failed with ${GIT_SUBMOD_RESULT}, please checkout submodules")
+        endif()
+    endif()
+endif()
+
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/cxxopts/CMakeLists.txt" AND "${PROJECT_SOURCE_DIR}/external/gtest/CMakeLists.txt")
+    message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+endif()
+
+
+
+###########################################CTEST########################################
 #enable_testing()
 include(CTest)
 

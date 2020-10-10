@@ -6,10 +6,11 @@
 #include <string>
 
 using namespace std;
+using namespace simplelib;
 
 void myeducation(double a, double b, double c)
 {
-	auto Pair = make_pair<double, double>(0.0, 0.0);	
+	auto Pair = make_pair(0.0, 0.0);	
 
 	if (!quadratic_equation(a, b, c, Pair))
 	{
@@ -18,7 +19,7 @@ void myeducation(double a, double b, double c)
 	}
 	else 
 	{
-		cout << "iscriminant less than 0, roots are insubstantial" << endl;
+		cout << "D < 0" << endl;
 	}
 }
 
