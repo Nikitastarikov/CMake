@@ -59,7 +59,6 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/cxxopts/CMakeLists.txt" AND "${PRO
 endif()
 
 
-
 ###########################################CTEST########################################
 #enable_testing()
 include(CTest)
