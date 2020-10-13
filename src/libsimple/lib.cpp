@@ -3,6 +3,14 @@
 #include "lib.hpp"
 
 namespace simplelib {
+	int operator==(std::pair<double, double> const &Pair_one, std::pair<double, double> const &Pair_two)
+	{
+		if (Pair_one.first == Pair_two.first && Pair_one.second == Pair_two.second)
+			return 0;
+		
+		return -1;
+	}
+
 	double sum(double a, double b)
 	{
 		return a + b;

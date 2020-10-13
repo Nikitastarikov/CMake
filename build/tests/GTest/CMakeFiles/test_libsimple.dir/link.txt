@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/test_libsimple.dir/test_libsimple.cpp.o  -o test_libsimple  ../../lib/libgtest_main.a ../../src/libsimple/liblibsimple.a ../../lib/libgtest.a -lpthread 

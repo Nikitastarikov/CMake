@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblibcryptographic.a  CMakeFiles/libcryptographic.dir/libcryptographic.cpp.o
+/usr/bin/ranlib liblibcryptographic.a
