@@ -1,7 +1,3 @@
-add_library(libsimple STATIC lib.cpp lib.hpp)
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
-# state that anybody linking to us needs to include the current source dir
-# to find MathFunctions.h, while we don't.
-target_include_directories(libsimple INTERFACE
-	${CMAKE_CURRENT_SOURCE_DIR}
-)
+ADD_STATIC_LIB(libsimple lib.cpp lib.hpp)

@@ -1,4 +1,5 @@
-#include "SimpleConfig.h"
+//#include "SimpleConfig.h"
+#include "cxxopts.hpp"
 #include "lib.hpp"
 #include <iostream>
 #include <utility>
@@ -8,7 +9,7 @@
 using namespace std;
 using namespace simplelib;
 
-void myeducation(double a, double b, double c)
+void my_education(double a, double b, double c)
 {
 	auto Pair = make_pair(0.0, 0.0);	
 
@@ -24,34 +25,42 @@ void myeducation(double a, double b, double c)
 }
 
 
-int main(int argn, char **argv)
+int main(int argc, char** argv)
 {
-	double a = 0.0;
-	double b = 0.0;
-	double c = 0.0;
 
+	cxxopts::Options options("test", "A brief description");
 
-	if (argn == 4)
-	{
-		a = atof(argv[1]);
-		b = atof(argv[2]);
-		c = atof(argv[3]);
+    options.add_options()
+    	("a,args", "Arguments for mathematical calculations", cxxopts::value<vector<double>>())
+        ("h,help", "Print usage")
+    ;
 
-		myeducation(a, b, c);
-	}
-	else if (argn == 3)
-	{
-		a = atof(argv[1]);
-		b = atof(argv[2]);
+    auto result = options.parse(argc, argv);
 
-		cout << a << " V " << b << " is " << sum(a, b) << endl;
-	}
-	else 
-	{
-		cout << "./Simple arg1 arg2- arg1 V arg2 is res" << endl;
-		cout << "./Simple arg1 arg2 arg3- quadratic equation" << endl;
-		return -1;
-	}
+    if (result.count("help"))
+    {
+      std::cout << options.help() << std::endl;
+      exit(0);
+    }
+
+    if (result.count("args"))
+    {
+    	vector<double> vector_args(result["args"].as<std::vector<double>>());
+
+		if (vector_args.size() == 3)
+		{
+			my_education(vector_args[0], vector_args[1], vector_args[2]);
+		}
+		else if (vector_args.size() == 2)
+		{
+			cout << vector_args[0] << " V " << vector_args[1] << " is " << sum(vector_args[0], vector_args[1]) << endl;
+		}
+		else 
+		{
+			cerr << "Arguments for mathematical calculations\n\t2 args - sum\n\t3 args - quadratic_equation" << endl;
+			return -1;
+		}
+    }
 
 	return 0;
 }
