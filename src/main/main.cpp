@@ -1,4 +1,3 @@
-//#include "SimpleConfig.h"
 #include "cxxopts.hpp"
 #include "lib.hpp"
 #include <iostream>
