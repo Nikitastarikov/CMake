@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nikita/Study/compilers/CMake/src/libsimple/lib.cpp
+cmath
+-
+iostream
+-
+lib.hpp
+/home/nikita/Study/compilers/CMake/src/libsimple/lib.hpp
+
+/home/nikita/Study/compilers/CMake/src/libsimple/lib.hpp
+utility
+-
+

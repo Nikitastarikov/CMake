@@ -5,8 +5,9 @@ list(APPEND EXTRA_LIBS cxxopts)
 
 if(CXXOPTS_BUILD_EXAMPLES)
 
-	message("INPUT!!!!!!!!!!")
+	message("INPUT!!!")
 	add_executable(Simple main.cpp)
+
 	target_link_libraries(
 		Simple 
 
@@ -18,12 +19,4 @@ if(CXXOPTS_BUILD_EXAMPLES)
 		PUBLIC ${PROJECT_BINARY_DIR}
 		INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
 	)
-
-	install(TARGETS Simple DESTINATION bin)
-	install(FILES "${PROJECT_BINARY_DIR}/SimpleConfig.h"
-		DESTINATION include
-	)
 endif()
-
-
-

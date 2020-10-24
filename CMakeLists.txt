@@ -5,7 +5,7 @@ if(EXISTS "${LOC_PATH}")
     message(FATAL_ERROR "You cannot build in a source directory (or any directory with a CMakeLists.txt file). Please make a build subdirectory. Feel free to remove CMakeCache.txt and CMakeFiles.")
 endif()
 
-project(Simple VERSION 1.0)
+project(Simple VERSION 1.0.0)
 
 add_library(tutorial_compiler_flags INTERFACE)
 #add expected compiler features to a target

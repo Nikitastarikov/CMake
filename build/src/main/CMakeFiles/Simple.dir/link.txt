@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Simple.dir/main.cpp.o  -o Simple  ../libsimple/liblibsimple.a 
